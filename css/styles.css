@@ -873,10 +873,6 @@ a,
   display: grid;
   grid-template-rows: auto 1fr;
 
-  gap: 0;
-
-  align-content: start;
-
   padding: 30px 28px 27px;
 
   overflow: hidden;
@@ -1010,7 +1006,6 @@ a,
   gap: 8px;
 
   flex-wrap: nowrap !important;
-
   white-space: nowrap !important;
 
   color: var(--ink);
@@ -1704,81 +1699,313 @@ a,
 
   object-fit: contain;
 }
-/* ---------- Training Archive ---------- */
+
+
+/* =========================================================
+   14A. TRAINING ARCHIVE
+   ========================================================= */
 
 .training-archive {
-  margin-top: 45px;
+  margin-top: 48px;
 }
+
+
+/* ---------- Archive Header ---------- */
 
 .archive-head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
 
-  gap: 20px;
+  gap: 24px;
 
-  margin-bottom: 18px;
+  margin-bottom: 28px;
+}
+
+.archive-head > div {
+  min-width: 0;
+}
+
+.section-kicker {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+
+  color: #A47D42;
 }
 
 .archive-head h3 {
-  font-size: 28px;
+  margin: 0;
+
+  font-size: 27px;
+  line-height: 1.15;
+  font-weight: 500;
+
+  letter-spacing: -.025em;
+
+  color: #2D2925;
 }
 
 .archive-head p {
+  max-width: 430px;
+
+  margin: 0;
+
   color: var(--ink-soft);
+
   font-size: 11px;
+  line-height: 1.7;
 }
 
-.archive-grid {
+
+/* ---------- Category Rows ---------- */
+
+.training-category {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+
+  grid-template-columns: 125px minmax(0, 1fr);
+
+  align-items: start;
+
+  column-gap: 20px;
+
+  padding: 14px 0;
+}
+
+
+/*
+   Only the two lines between categories.
+   No line before Design Studios.
+   No line after Students.
+*/
+
+.training-category + .training-category {
+  border-top: 1px solid rgba(45, 41, 37, .14);
+}
+
+
+/* ---------- Category Label ---------- */
+
+.category-intro {
+  display: flex;
+  align-items: baseline;
 
   gap: 8px;
+
+  padding-top: 3px;
 }
+
+.category-number {
+  flex: 0 0 auto;
+
+  font-size: 9px;
+  line-height: 1;
+
+  letter-spacing: .08em;
+
+  color: #A47D42;
+}
+
+.category-copy {
+  min-width: 0;
+}
+
+.category-copy h4,
+.category-intro h4 {
+  margin: 0;
+
+  font-size: 11px;
+  line-height: 1.25;
+
+  font-weight: 500;
+  letter-spacing: .02em;
+
+  color: #332E29;
+
+  transition: transform .25s ease;
+}
+
+.category-copy p,
+.category-intro p {
+  display: none;
+}
+
+.training-category:hover .category-copy h4,
+.training-category:hover .category-intro h4 {
+  transform: translateX(3px);
+}
+
+
+/* ---------- Archive Image Grid ---------- */
+
+.training-grid {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  align-items: flex-start;
+
+  min-width: 0;
+}
+
+
+/*
+   The HTML may still use training-grid-2 / training-grid-4.
+   They intentionally inherit the same compact flex behavior.
+*/
+
+.training-grid-2,
+.training-grid-4 {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  align-items: flex-start;
+
+  min-width: 0;
+}
+
+
+/* ---------- Archive Tile ---------- */
 
 .archive-tile {
   position: relative;
 
+  flex: 0 0 88px;
+
+  width: 88px;
+  height: 68px;
+
+  display: block;
+
   overflow: hidden;
 
-  aspect-ratio: 1 / 1;
+  padding: 0;
+  margin: 0;
 
-  background: #ECE9E2;
+  cursor: pointer;
 
-  border-radius: 12px;
+  background: #EEE8DF;
+
+  border: 1px solid rgba(45, 41, 37, .13);
+
+  border-radius: 0;
 
   transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-}
-
-.archive-tile:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
+    border-color .25s ease,
+    transform .25s ease;
 }
 
 .archive-tile img {
   width: 100%;
   height: 100%;
 
+  display: block;
+
   object-fit: cover;
+
+  transition:
+    transform .45s cubic-bezier(.2, .7, .2, 1),
+    opacity .3s ease;
 }
 
-.archive-tile span {
+
+/* ---------- Archive Interaction ---------- */
+
+.archive-tile::after {
+  content: "↗";
+
   position: absolute;
 
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
+  right: 5px;
+  bottom: 4px;
 
-  padding: 4px 6px;
+  width: 18px;
+  height: 18px;
 
-  background: rgba(32, 32, 32, .76);
+  display: grid;
+  place-items: center;
+
   color: var(--white);
 
-  border-radius: 4px;
+  background: rgba(25, 23, 20, .68);
 
-  font-size: 7px;
+  font-size: 9px;
+  line-height: 1;
+
+  opacity: 0;
+
+  transform: translateY(4px);
+
+  transition:
+    opacity .2s ease,
+    transform .2s ease;
+}
+
+.archive-tile:hover {
+  border-color: #A47D42;
+
+  transform: translateY(-2px);
+}
+
+.archive-tile:hover img {
+  transform: scale(1.05);
+  opacity: .92;
+}
+
+.archive-tile:hover::after,
+.archive-tile:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.archive-tile:focus-visible {
+  outline: 1px solid #A47D42;
+  outline-offset: 3px;
+}
+
+
+/* ---------- Category-specific desktop density ---------- */
+
+/*
+   Design Studios
+   1 image: naturally stays compact.
+*/
+
+.training-category:first-of-type .training-grid,
+.training-category:first-of-type .training-grid-2 {
+  max-width: 100%;
+}
+
+
+/*
+   Adults
+   Four images can sit comfortably in one row.
+*/
+
+.training-category:nth-of-type(2) .training-grid,
+.training-category:nth-of-type(2) .training-grid-4 {
+  max-width: 100%;
+}
+
+
+/*
+   Students
+   Flex-wrap is intentional so the row fills naturally
+   without artificial empty grid cells.
+*/
+
+.training-category:nth-of-type(3) .training-grid,
+.training-category:nth-of-type(3) .training-grid-4 {
+  max-width: 100%;
 }
 
 
@@ -2325,6 +2552,21 @@ a,
   .track-visual {
     grid-column: 2;
   }
+
+
+  /* Training archive */
+
+  .training-category {
+    grid-template-columns: 115px minmax(0, 1fr);
+    column-gap: 18px;
+  }
+
+  .archive-tile {
+    flex-basis: 84px;
+
+    width: 84px;
+    height: 65px;
+  }
 }
 
 
@@ -2383,6 +2625,7 @@ a,
   }
 
   /* Navigation */
+
   .nav {
     display: none;
   }
@@ -2422,6 +2665,7 @@ a,
   }
 
   /* Mobile dropdown */
+
   .nav-dropdown {
     width: 100%;
     height: auto;
@@ -2486,6 +2730,7 @@ a,
   }
 
   /* Hero */
+
   .hero {
     grid-template-columns: 1fr;
 
@@ -2520,6 +2765,7 @@ a,
   }
 
   /* General layouts */
+
   .profile,
   .consultancy,
   .fullservice {
@@ -2534,11 +2780,28 @@ a,
     grid-template-columns: 1fr;
   }
 
-  .archive-grid {
-    grid-template-columns: repeat(4, 1fr);
+
+  /* Training */
+
+  .training-track {
+    grid-template-columns: 1fr;
   }
 
+  .track-visual {
+    grid-column: auto;
+  }
+
+  .archive-head {
+    align-items: flex-start;
+  }
+
+  .archive-head p {
+    max-width: 360px;
+  }
+
+
   /* Contact */
+
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -2583,10 +2846,11 @@ a,
     line-height: 1.75;
   }
 
+
   /* Disciplines */
+
   .disciplines {
     grid-template-columns: 1fr;
-
     gap: 12px;
   }
 
@@ -2623,12 +2887,16 @@ a,
     break-inside: avoid;
   }
 
+
   /* Services */
+
   .service-grid {
     grid-template-columns: 1fr 1fr;
   }
 
+
   /* Consultancy */
+
   .consultancy-list {
     gap: 11px;
   }
@@ -2643,10 +2911,12 @@ a,
     font-size: 18px;
   }
 
-  /* Training */
-  .training-track {
-    grid-template-columns: 1fr;
 
+  /* =====================================================
+     TRAINING
+     ===================================================== */
+
+  .training-track {
     gap: 18px;
 
     padding: 20px;
@@ -2658,20 +2928,71 @@ a,
   }
 
   .track-visual {
-    grid-column: 1;
-
     height: 180px;
+  }
+
+
+  /* Training Archive */
+
+  .training-archive {
+    margin-top: 38px;
   }
 
   .archive-head {
     display: block;
+
+    margin-bottom: 22px;
+  }
+
+  .archive-head h3 {
+    font-size: 25px;
   }
 
   .archive-head p {
+    max-width: 520px;
+
     margin-top: 8px;
+
+    font-size: 10.5px;
   }
 
+  .training-category {
+    grid-template-columns: 105px minmax(0, 1fr);
+
+    column-gap: 15px;
+
+    padding: 13px 0;
+  }
+
+  .category-intro {
+    gap: 7px;
+  }
+
+  .category-number {
+    font-size: 8px;
+  }
+
+  .category-copy h4,
+  .category-intro h4 {
+    font-size: 10.5px;
+  }
+
+  .training-grid,
+  .training-grid-2,
+  .training-grid-4 {
+    gap: 6px;
+  }
+
+  .archive-tile {
+    flex-basis: 78px;
+
+    width: 78px;
+    height: 61px;
+  }
+
+
   /* Transformation */
+
   .transform-grid {
     grid-template-columns: 1fr;
   }
@@ -2680,7 +3001,9 @@ a,
     grid-column: auto;
   }
 
+
   /* Footer */
+
   .footer-inner {
     display: block;
   }
@@ -2689,7 +3012,9 @@ a,
     margin-top: 25px;
   }
 
+
   /* Contact */
+
   .contact-intro {
     padding: 26px 22px 24px;
   }
@@ -2724,7 +3049,9 @@ a,
     font-size: 8px;
   }
 
+
   /* Hero */
+
   .hero {
     min-height: auto;
 
@@ -2799,7 +3126,9 @@ a,
     display: none;
   }
 
+
   /* Projects */
+
   .project-head {
     padding: 22px 20px 8px;
   }
@@ -2899,6 +3228,9 @@ a,
     padding: 11px 0;
   }
 
+
+  /* Hero */
+
   .hero {
     min-height: 88vh;
 
@@ -2920,6 +3252,9 @@ a,
     font-size: 10px;
   }
 
+
+  /* Disciplines */
+
   .discipline {
     padding: 24px;
   }
@@ -2931,6 +3266,9 @@ a,
   .discipline ul {
     columns: 1;
   }
+
+
+  /* Services */
 
   .service-grid {
     grid-template-columns: 1fr 1fr;
@@ -2952,6 +3290,9 @@ a,
     font-size: 9px;
   }
 
+
+  /* Filters */
+
   .filters {
     gap: 7px;
     margin-bottom: 26px;
@@ -2961,6 +3302,9 @@ a,
     padding: 8px 12px;
     font-size: 9px;
   }
+
+
+  /* Modal */
 
   .modal {
     padding: 12px;
@@ -2975,6 +3319,9 @@ a,
     flex-basis: 64px;
     height: 50px;
   }
+
+
+  /* Portrait */
 
   .portrait-frame {
     max-width: 260px;
@@ -2995,6 +3342,9 @@ a,
     font-size: 12px;
   }
 
+
+  /* Section headings */
+
   .service-copy h2,
   .consultancy-intro h2,
   .style-intro h2 {
@@ -3004,6 +3354,121 @@ a,
   .footer h2 {
     font-size: clamp(30px, 8.5vw, 40px);
   }
+
+
+  /* =====================================================
+     TRAINING ARCHIVE — MOBILE
+     ===================================================== */
+
+  .training-archive {
+    margin-top: 30px;
+  }
+
+  .archive-head {
+    margin-bottom: 20px;
+  }
+
+  .archive-head h3 {
+    font-size: 23px;
+  }
+
+  .archive-head p {
+    max-width: 100%;
+
+    font-size: 10px;
+    line-height: 1.65;
+  }
+
+  .section-kicker {
+    margin-bottom: 6px;
+
+    font-size: 8px;
+  }
+
+
+  /*
+     On mobile the category becomes a vertical editorial block.
+     The label sits above the images, which gives the archive
+     enough width and avoids tiny thumbnails.
+  */
+
+  .training-category {
+    display: block;
+
+    padding: 13px 0;
+  }
+
+  .category-intro {
+    display: flex;
+    align-items: baseline;
+
+    gap: 7px;
+
+    margin-bottom: 9px;
+
+    padding: 0;
+  }
+
+  .category-number {
+    font-size: 8px;
+  }
+
+  .category-copy h4,
+  .category-intro h4 {
+    font-size: 11px;
+  }
+
+
+  /*
+     Three columns on normal phones.
+     Images become much larger than the previous 80px layout.
+  */
+
+  .training-grid,
+  .training-grid-2,
+  .training-grid-4 {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 6px;
+
+    width: 100%;
+  }
+
+  .archive-tile {
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: 1.28;
+
+    border-radius: 0;
+  }
+
+  .archive-tile::after {
+    display: none;
+  }
+
+  .archive-tile:hover {
+    transform: none;
+
+    border-color: rgba(45, 41, 37, .13);
+  }
+
+  .archive-tile:hover img {
+    transform: none;
+    opacity: 1;
+  }
+
+
+  /* Contact */
+
+  .contact-intro {
+    padding: 26px 22px 24px;
+  }
+
+
+  /* Archive / small general */
 
   .archive-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -3103,11 +3568,37 @@ a,
     font-size: 8px;
   }
 
-  .archive-grid {
-    grid-template-columns: repeat(2, 1fr);
 
-    gap: 7px;
+  /* =====================================================
+     TRAINING ARCHIVE — SMALL MOBILE
+     ===================================================== */
+
+  .archive-head {
+    margin-bottom: 18px;
   }
+
+  .archive-head h3 {
+    font-size: 22px;
+  }
+
+  .training-category {
+    padding: 12px 0;
+  }
+
+  .training-grid,
+  .training-grid-2,
+  .training-grid-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 5px;
+  }
+
+  .archive-tile {
+    aspect-ratio: 1.25;
+  }
+
+
+  /* Contact */
 
   .contact-intro {
     min-height: 310px;
@@ -3125,6 +3616,9 @@ a,
   .contact-card .meta {
     font-size: 8.5px;
   }
+
+
+  /* Footer */
 
   .footer {
     padding-top: 58px;
@@ -3190,6 +3684,27 @@ a,
   .section-top h2 {
     font-size: 27px;
   }
+
+
+  /* Training archive */
+
+  .training-category {
+    padding: 11px 0;
+  }
+
+  .training-grid,
+  .training-grid-2,
+  .training-grid-4 {
+    gap: 5px;
+  }
+
+  .archive-head h3 {
+    font-size: 21px;
+  }
+
+  .archive-head p {
+    font-size: 9.5px;
+  }
 }
 
 
@@ -3213,15 +3728,12 @@ a,
   }
 }
 
+
 /* =========================================================
-   PRINT / PDF VERSION
+   28. PRINT / PDF VERSION
    ========================================================= */
 
 @media print {
-
-  /* -------------------------------------------------------
-     1. PAGE SETUP
-     ------------------------------------------------------- */
 
   @page {
     size: A4;
@@ -3245,9 +3757,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     2. HIDE WEBSITE-ONLY ELEMENTS
-     ------------------------------------------------------- */
+  /* Hide website-only elements */
 
   .progress,
   .header,
@@ -3259,9 +3769,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     3. RESET SCREEN ANIMATIONS
-     ------------------------------------------------------- */
+  /* Reset animations */
 
   .reveal,
   .reveal.visible {
@@ -3271,9 +3779,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     4. GENERAL SECTIONS
-     ------------------------------------------------------- */
+  /* General sections */
 
   .section,
   .hero,
@@ -3294,9 +3800,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     5. KEEP BACKGROUNDS + COLORS
-     ------------------------------------------------------- */
+  /* Keep backgrounds + colors */
 
   .section,
   .section.alt,
@@ -3310,9 +3814,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     6. HERO
-     ------------------------------------------------------- */
+  /* Hero */
 
   .hero {
     min-height: 0 !important;
@@ -3327,7 +3829,7 @@ a,
 
   .hero h1 {
     font-size: 42pt !important;
-    line-height: 0.98 !important;
+    line-height: .98 !important;
   }
 
   .hero p {
@@ -3346,9 +3848,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     7. SECTION HEADERS
-     ------------------------------------------------------- */
+  /* Section headers */
 
   .section-top {
     display: grid !important;
@@ -3373,9 +3873,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     8. ABOUT
-     ------------------------------------------------------- */
+  /* About */
 
   #about {
     page-break-after: always;
@@ -3413,9 +3911,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     9. DISCIPLINES
-     ------------------------------------------------------- */
+  /* Disciplines */
 
   #disciplines {
     page-break-after: always;
@@ -3441,9 +3937,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     10. SERVICES
-     ------------------------------------------------------- */
+  /* Services */
 
   .fullservice {
     page-break-inside: avoid;
@@ -3462,9 +3956,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     11. PROJECT SECTIONS
-     ------------------------------------------------------- */
+  /* Project sections */
 
   #design,
   #styling {
@@ -3509,9 +4001,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     12. CONSULTANCY
-     ------------------------------------------------------- */
+  /* Consultancy */
 
   #consultancy {
     page-break-before: always;
@@ -3535,9 +4025,9 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     13. TRAINING
-     ------------------------------------------------------- */
+  /* =====================================================
+     TRAINING — PRINT
+     ===================================================== */
 
   #training {
     page-break-before: always;
@@ -3548,8 +4038,10 @@ a,
     display: grid !important;
     grid-template-columns: 18% 42% 40% !important;
     gap: 6mm !important;
+
     page-break-inside: avoid !important;
     break-inside: avoid !important;
+
     margin-bottom: 12mm !important;
   }
 
@@ -3569,21 +4061,42 @@ a,
     break-inside: avoid;
   }
 
-  .archive-grid {
+  .training-category {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 5mm !important;
-  }
+    grid-template-columns: 25% 75% !important;
 
-  .archive-tile {
+    padding: 4mm 0 !important;
+
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
 
+  .training-grid,
+  .training-grid-2,
+  .training-grid-4 {
+    display: flex !important;
 
-  /* -------------------------------------------------------
-     14. TRANSFORMATION
-     ------------------------------------------------------- */
+    flex-wrap: wrap !important;
+
+    gap: 3mm !important;
+  }
+
+  .archive-tile {
+    flex: 0 0 28mm !important;
+
+    width: 28mm !important;
+    height: 21mm !important;
+
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .archive-tile::after {
+    display: none !important;
+  }
+
+
+  /* Transformation */
 
   .transform {
     page-break-before: always;
@@ -3608,9 +4121,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     15. CONTACT
-     ------------------------------------------------------- */
+  /* Contact */
 
   #contact {
     page-break-before: always;
@@ -3644,9 +4155,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     16. FOOTER
-     ------------------------------------------------------- */
+  /* Footer */
 
   .footer {
     padding-top: 15mm !important;
@@ -3661,9 +4170,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     17. IMAGES
-     ------------------------------------------------------- */
+  /* Images */
 
   img {
     max-width: 100% !important;
@@ -3675,9 +4182,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     18. DON'T CUT IMPORTANT CONTENT
-     ------------------------------------------------------- */
+  /* Don't cut important content */
 
   h1,
   h2,
@@ -3698,9 +4203,7 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     19. LINKS
-     ------------------------------------------------------- */
+  /* Links */
 
   a {
     color: inherit !important;
@@ -3708,707 +4211,10 @@ a,
   }
 
 
-  /* -------------------------------------------------------
-     20. REMOVE SCREEN EFFECTS
-     ------------------------------------------------------- */
+  /* Remove screen effects */
 
   * {
     animation: none !important;
     transition: none !important;
-  }
-
-}
-
-/* =========================================================
-   TRAINING ARCHIVE
-========================================================= */
-
-.training-archive {
-  margin-top: 90px;
-}
-
-
-/* =========================================================
-   ARCHIVE HEADER
-========================================================= */
-
-.archive-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 30px;
-
-  margin-bottom: 65px;
-}
-
-.archive-head h3 {
-  margin: 6px 0 8px;
-
-  font-size: 34px;
-  line-height: 1.1;
-  font-weight: 500;
-  letter-spacing: -0.025em;
-}
-
-.archive-head p {
-  margin: 0;
-
-  font-size: 13px;
-  line-height: 1.6;
-
-  opacity: 0.55;
-}
-
-.section-kicker {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  opacity: 0.45;
-}
-
-
-/* =========================================================
-   CATEGORY
-========================================================= */
-
-.training-category {
-  display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: 45px;
-
-  margin-bottom: 75px;
-}
-
-.training-category:last-child {
-  margin-bottom: 0;
-}
-
-
-/* =========================================================
-   CATEGORY INTRO
-========================================================= */
-
-.category-intro {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  align-self: start;
-}
-
-.category-number {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  opacity: 0.4;
-}
-
-.category-intro h4 {
-  margin: 0;
-
-  font-size: 18px;
-  line-height: 1.25;
-  font-weight: 500;
-}
-
-.category-intro p {
-  margin: 0;
-
-  max-width: 150px;
-
-  font-size: 11px;
-  line-height: 1.65;
-
-  opacity: 0.5;
-}
-
-
-/* =========================================================
-   IMAGE GRID
-========================================================= */
-
-.training-grid {
-  display: grid;
-  gap: 9px;
-  align-content: start;
-}
-
-.training-grid-2 {
-  grid-template-columns: repeat(2, 125px);
-}
-
-.training-grid-4 {
-  grid-template-columns: repeat(4, 125px);
-}
-
-
-/* =========================================================
-   IMAGE TILE
-========================================================= */
-
-.archive-tile {
-  display: block;
-
-  width: 100%;
-  aspect-ratio: 1 / 0.82;
-
-  padding: 0;
-  margin: 0;
-
-  overflow: hidden;
-
-  border: 1px solid rgba(35, 32, 28, 0.13);
-
-  background: transparent;
-
-  cursor: pointer;
-
-  transition: border-color 0.3s ease;
-}
-
-.archive-tile img {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  transition:
-    transform 0.45s ease,
-    opacity 0.45s ease;
-}
-
-.archive-tile:hover {
-  border-color: rgba(35, 32, 28, 0.32);
-}
-
-.archive-tile:hover img {
-  transform: scale(1.04);
-  opacity: 0.9;
-}
-
-
-/* =========================================================
-   DESIGN STUDIOS
-========================================================= */
-
-.training-category:first-of-type .training-grid-2 {
-  grid-template-columns: 125px;
-}
-
-
-/* =========================================================
-   ADULTS
-========================================================= */
-
-.training-category:nth-of-type(2) .training-grid-4 {
-  grid-template-columns: repeat(4, 125px);
-}
-
-
-/* =========================================================
-   STUDENTS
-========================================================= */
-
-.training-category:nth-of-type(3) .training-grid-4 {
-  grid-template-columns: repeat(6, 95px);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 1000px) {
-
-  .training-category {
-    grid-template-columns: 150px 1fr;
-    gap: 30px;
-  }
-
-  .training-category:nth-of-type(3) .training-grid-4 {
-    grid-template-columns: repeat(5, 90px);
-  }
-
-}
-
-
-@media (max-width: 700px) {
-
-  .training-category {
-    display: block;
-    margin-bottom: 55px;
-  }
-
-  .category-intro {
-    margin-bottom: 20px;
-  }
-
-  .category-intro p {
-    max-width: 300px;
-  }
-
-  .training-grid-2,
-  .training-category:first-of-type .training-grid-2 {
-    grid-template-columns: repeat(2, 105px);
-  }
-
-  .training-category:nth-of-type(2) .training-grid-4,
-  .training-category:nth-of-type(3) .training-grid-4 {
-    grid-template-columns: repeat(4, 80px);
-  }
-
-}
-
-
-@media (max-width: 480px) {
-
-  .archive-head {
-    margin-bottom: 45px;
-  }
-
-  .archive-head h3 {
-    font-size: 28px;
-  }
-
-  .training-category:nth-of-type(2) .training-grid-4,
-  .training-category:nth-of-type(3) .training-grid-4 {
-    grid-template-columns: repeat(3, 80px);
-  }
-
-}
-
-/* =========================================================
-   INTERACTION
-========================================================= */
-
-.archive-tile {
-  position: relative;
-  overflow: hidden;
-}
-
-.archive-tile::after {
-  content: "View";
-  position: absolute;
-  left: 8px;
-  bottom: 8px;
-
-  padding: 5px 8px;
-
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-
-  color: #fff;
-  background: rgba(25, 23, 20, 0.72);
-
-  opacity: 0;
-  transform: translateY(5px);
-
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.archive-tile:hover::after,
-.archive-tile:focus-visible::after {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.archive-tile img {
-  transition:
-    transform 0.5s cubic-bezier(.2,.7,.2,1),
-    opacity 0.35s ease;
-}
-
-.archive-tile:hover img {
-  transform: scale(1.035);
-  opacity: 0.92;
-}
-
-
-/* subtle category interaction */
-
-.category-intro h4 {
-  transition: transform 0.3s ease;
-}
-
-.training-category:hover .category-intro h4 {
-  transform: translateX(4px);
-}
-/* =========================================================
-   TRAINING ARCHIVE
-   ========================================================= */
-
-.training-archive {
-  margin-top: 42px;
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.training-archive-header {
-  display: flex;
-  align-items: baseline;
-  gap: 18px;
-
-  margin-bottom: 18px;
-}
-
-.training-archive-header .eyebrow {
-  font-size: 9px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-
-  color: #a47d42;
-}
-
-.training-archive-header h3 {
-  margin: 0;
-
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: -.025em;
-
-  color: #2d2925;
-}
-
-
-/* =========================================================
-   CATEGORY ROWS
-   ========================================================= */
-
-.training-category {
-  display: grid;
-  grid-template-columns: 125px 1fr;
-  align-items: start;
-
-  column-gap: 20px;
-
-  padding: 18px 0;
-}
-
-
-/* ONLY TWO DIVIDER LINES */
-
-.training-category + .training-category {
-  border-top: 1px solid rgba(45, 41, 37, .14);
-}
-
-
-/* =========================================================
-   CATEGORY LABEL
-   ========================================================= */
-
-.category-intro {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-
-  padding-top: 2px;
-}
-
-.category-number {
-  font-size: 9px;
-  letter-spacing: .08em;
-
-  color: #a47d42;
-}
-
-.category-copy h4 {
-  margin: 0;
-
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: .02em;
-
-  color: #332e29;
-}
-
-
-/* Hide descriptions */
-
-.category-copy p {
-  display: none;
-}
-
-
-/* =========================================================
-   IMAGE GRID
-   ========================================================= */
-
-.training-grid {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 6px;
-
-  align-items: flex-start;
-}
-
-
-/* =========================================================
-   ARCHIVE IMAGE
-   ========================================================= */
-
-.archive-tile {
-  position: relative;
-
-  width: 88px;
-  height: 68px;
-
-  display: block;
-
-  overflow: hidden;
-  cursor: pointer;
-
-  border: 1px solid rgba(45, 41, 37, .13);
-
-  background: #eee8df;
-}
-
-
-.archive-tile img {
-  width: 100%;
-  height: 100%;
-
-  display: block;
-
-  object-fit: cover;
-
-  transition:
-    transform .4s ease,
-    opacity .3s ease;
-}
-
-
-/* =========================================================
-   HOVER
-   ========================================================= */
-
-.archive-tile:hover {
-  border-color: #a47d42;
-}
-
-.archive-tile:hover img {
-  transform: scale(1.06);
-  opacity: .9;
-}
-
-
-/* Small interaction marker */
-
-.archive-tile::after {
-  content: "↗";
-
-  position: absolute;
-  right: 4px;
-  bottom: 3px;
-
-  font-size: 9px;
-  color: white;
-
-  opacity: 0;
-
-  transition: opacity .2s ease;
-}
-
-.archive-tile:hover::after {
-  opacity: 1;
-}
-
-
-/* =========================================================
-   KEYBOARD ACCESSIBILITY
-   ========================================================= */
-
-.archive-tile:focus-visible {
-  outline: 1px solid #a47d42;
-  outline-offset: 3px;
-}
-
-
-/* =========================================================
-   TABLET / SMALL LAPTOP
-   ========================================================= */
-
-@media (max-width: 850px) {
-
-  .training-category {
-    grid-template-columns: 105px 1fr;
-    column-gap: 15px;
-  }
-
-  .archive-tile {
-    width: 82px;
-    height: 63px;
-  }
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-  .training-archive {
-    margin-top: 32px;
-  }
-
-  .training-archive-header {
-    margin-bottom: 14px;
-  }
-
-  .training-archive-header h3 {
-    font-size: 21px;
-  }
-
-
-  .training-category {
-    grid-template-columns: 1fr;
-    row-gap: 9px;
-
-    padding: 14px 0;
-  }
-
-
-  .category-intro {
-    padding-left: 1px;
-  }
-
-
-  .archive-tile {
-    width: calc(25% - 6px);
-    height: auto;
-
-    aspect-ratio: 1.28;
-  }
-}
-
-/* =========================================================
-   MOBILE TRAINING ARCHIVE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-  .training-archive {
-    margin-top: 30px;
-  }
-
-  .training-archive-header {
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  .training-archive-header .eyebrow {
-    font-size: 8px;
-  }
-
-  .training-archive-header h3 {
-    font-size: 21px;
-  }
-
-
-  /* -----------------------------------------
-     CATEGORY
-     ----------------------------------------- */
-
-  .training-category {
-    display: block;
-
-    padding: 13px 0;
-  }
-
-
-  /* -----------------------------------------
-     CATEGORY LABEL
-     ----------------------------------------- */
-
-  .category-intro {
-    display: flex;
-    align-items: baseline;
-
-    gap: 7px;
-
-    margin-bottom: 9px;
-    padding-left: 0;
-  }
-
-  .category-number {
-    font-size: 8px;
-  }
-
-  .category-copy h4 {
-    font-size: 11px;
-    letter-spacing: .015em;
-  }
-
-
-  /* -----------------------------------------
-     IMAGE GRID
-     ----------------------------------------- */
-
-  .training-grid {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 6px;
-
-    width: 100%;
-  }
-
-
-  /* -----------------------------------------
-     IMAGE TILE
-     ----------------------------------------- */
-
-  .archive-tile {
-    width: 100%;
-    height: auto;
-
-    aspect-ratio: 1.3;
-
-    border: 1px solid rgba(45, 41, 37, .13);
-  }
-
-
-  .archive-tile img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-  }
-
-
-  /* -----------------------------------------
-     MOBILE HOVER / TOUCH
-     ----------------------------------------- */
-
-  .archive-tile::after {
-    display: none;
-  }
-
-
-  .archive-tile:hover {
-    border-color: rgba(45, 41, 37, .13);
-  }
-
-  .archive-tile:hover img {
-    transform: none;
-    opacity: 1;
-  }
-
-
-  /* -----------------------------------------
-     DIVIDERS
-     ----------------------------------------- */
-
-  .training-category + .training-category {
-    border-top: 1px solid rgba(45, 41, 37, .14);
   }
 }
