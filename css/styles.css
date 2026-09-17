@@ -1610,7 +1610,7 @@ a,
 }
 
 .space-track {
-  border-top: 5px solid var(--blue);
+  border-top: 5px solid var(--green);
 }
 
 .pro-track {
@@ -1664,7 +1664,7 @@ a,
 }
 
 .space-track .track-label {
-  color: var(--blue);
+  color: var(--green);
 }
 
 .track-copy h3 {
@@ -1698,7 +1698,12 @@ a,
   object-fit: cover;
 }
 
+.pro-mark img {
+  max-width: 95px;
+  max-height: 65px;
 
+  object-fit: contain;
+}
 /* ---------- Training Archive ---------- */
 
 .training-archive {
@@ -3205,5 +3210,1081 @@ a,
   .consult-card,
   .contact-card {
     transition: none;
+  }
+}
+
+/* =========================================================
+   PRINT / PDF VERSION
+   ========================================================= */
+
+@media print {
+
+  /* -------------------------------------------------------
+     1. PAGE SETUP
+     ------------------------------------------------------- */
+
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    width: 100%;
+    min-height: 100%;
+    background: #ffffff !important;
+    color: #222222 !important;
+    overflow: visible !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.55;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+
+  /* -------------------------------------------------------
+     2. HIDE WEBSITE-ONLY ELEMENTS
+     ------------------------------------------------------- */
+
+  .progress,
+  .header,
+  .hero-cta,
+  .filters,
+  .text-button,
+  .modal {
+    display: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     3. RESET SCREEN ANIMATIONS
+     ------------------------------------------------------- */
+
+  .reveal,
+  .reveal.visible {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+
+  /* -------------------------------------------------------
+     4. GENERAL SECTIONS
+     ------------------------------------------------------- */
+
+  .section,
+  .hero,
+  .footer {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .wrap {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     5. KEEP BACKGROUNDS + COLORS
+     ------------------------------------------------------- */
+
+  .section,
+  .section.alt,
+  .section.soft,
+  .training-hero,
+  .transform,
+  .contact-section,
+  .footer {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+
+  /* -------------------------------------------------------
+     6. HERO
+     ------------------------------------------------------- */
+
+  .hero {
+    min-height: 0 !important;
+    padding: 25mm 0 15mm !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .hero-inner {
+    max-width: none !important;
+  }
+
+  .hero h1 {
+    font-size: 42pt !important;
+    line-height: 0.98 !important;
+  }
+
+  .hero p {
+    max-width: 150mm !important;
+    font-size: 12pt !important;
+  }
+
+  .hero-showcase {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .hero-image img {
+    max-height: 95mm !important;
+    object-fit: cover !important;
+  }
+
+
+  /* -------------------------------------------------------
+     7. SECTION HEADERS
+     ------------------------------------------------------- */
+
+  .section-top {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12mm !important;
+    align-items: end !important;
+    margin-bottom: 10mm !important;
+  }
+
+  .section-top h2,
+  .consultancy-intro h2,
+  .style-intro h2,
+  .service-copy h2,
+  .contact-intro h2,
+  .footer h2 {
+    font-size: 27pt !important;
+    line-height: 1.05 !important;
+  }
+
+  .section-top p {
+    font-size: 10.5pt !important;
+  }
+
+
+  /* -------------------------------------------------------
+     8. ABOUT
+     ------------------------------------------------------- */
+
+  #about {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .profile {
+    display: grid !important;
+    grid-template-columns: 40% 60% !important;
+    gap: 12mm !important;
+    align-items: center !important;
+  }
+
+  .portrait-frame {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .portrait-frame img {
+    width: 100% !important;
+    max-width: 75mm !important;
+    height: auto !important;
+  }
+
+  .profile-copy {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .facts {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 5mm !important;
+  }
+
+
+  /* -------------------------------------------------------
+     9. DISCIPLINES
+     ------------------------------------------------------- */
+
+  #disciplines {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .disciplines {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 7mm !important;
+  }
+
+  .discipline {
+    min-height: 72mm !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+  }
+
+  .discipline h3 {
+    font-size: 20pt !important;
+  }
+
+
+  /* -------------------------------------------------------
+     10. SERVICES
+     ------------------------------------------------------- */
+
+  .fullservice {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .service-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 5mm !important;
+  }
+
+  .service-mini {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+
+  /* -------------------------------------------------------
+     11. PROJECT SECTIONS
+     ------------------------------------------------------- */
+
+  #design,
+  #styling {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .project-list {
+    display: block !important;
+  }
+
+  .project-card {
+    width: 100% !important;
+    margin-bottom: 10mm !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+  }
+
+  .project-head {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .project-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 4mm !important;
+  }
+
+  .project-grid .tile {
+    height: 55mm !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  .project-grid .tile img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+
+  /* -------------------------------------------------------
+     12. CONSULTANCY
+     ------------------------------------------------------- */
+
+  #consultancy {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .consultancy-intro {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .consultancy-list {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6mm !important;
+  }
+
+  .consult-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+
+  /* -------------------------------------------------------
+     13. TRAINING
+     ------------------------------------------------------- */
+
+  #training {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .training-track {
+    display: grid !important;
+    grid-template-columns: 18% 42% 40% !important;
+    gap: 6mm !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 12mm !important;
+  }
+
+  .track-visual {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .track-visual img {
+    max-width: 100% !important;
+    max-height: 65mm !important;
+    object-fit: cover !important;
+  }
+
+  .training-archive {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .archive-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 5mm !important;
+  }
+
+  .archive-tile {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+
+  /* -------------------------------------------------------
+     14. TRANSFORMATION
+     ------------------------------------------------------- */
+
+  .transform {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .transform-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 7mm !important;
+  }
+
+  .transform-card,
+  .pair {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .pair img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+
+  /* -------------------------------------------------------
+     15. CONTACT
+     ------------------------------------------------------- */
+
+  #contact {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .contact-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10mm !important;
+    align-items: stretch !important;
+  }
+
+  .contact-intro,
+  .contact-cards {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .contact-cards {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 4mm !important;
+  }
+
+  .contact-card {
+    min-height: 25mm !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     16. FOOTER
+     ------------------------------------------------------- */
+
+  .footer {
+    padding-top: 15mm !important;
+    padding-bottom: 10mm !important;
+    page-break-before: always;
+    break-before: page;
+  }
+
+  .footer-inner {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+
+  /* -------------------------------------------------------
+     17. IMAGES
+     ------------------------------------------------------- */
+
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+
+  /* -------------------------------------------------------
+     18. DON'T CUT IMPORTANT CONTENT
+     ------------------------------------------------------- */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  .project-card,
+  .discipline,
+  .service-mini,
+  .consult-card,
+  .training-track,
+  .archive-tile,
+  .transform-card,
+  .contact-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+
+  /* -------------------------------------------------------
+     19. LINKS
+     ------------------------------------------------------- */
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+
+  /* -------------------------------------------------------
+     20. REMOVE SCREEN EFFECTS
+     ------------------------------------------------------- */
+
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
+
+/* =========================================================
+   TRAINING ARCHIVE
+========================================================= */
+
+.training-archive {
+  margin-top: 90px;
+}
+
+
+/* =========================================================
+   ARCHIVE HEADER
+========================================================= */
+
+.archive-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+
+  margin-bottom: 65px;
+}
+
+.archive-head h3 {
+  margin: 6px 0 8px;
+
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.archive-head p {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.6;
+
+  opacity: 0.55;
+}
+
+.section-kicker {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.training-category {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 45px;
+
+  margin-bottom: 75px;
+}
+
+.training-category:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CATEGORY INTRO
+========================================================= */
+
+.category-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  align-self: start;
+}
+
+.category-number {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  opacity: 0.4;
+}
+
+.category-intro h4 {
+  margin: 0;
+
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.category-intro p {
+  margin: 0;
+
+  max-width: 150px;
+
+  font-size: 11px;
+  line-height: 1.65;
+
+  opacity: 0.5;
+}
+
+
+/* =========================================================
+   IMAGE GRID
+========================================================= */
+
+.training-grid {
+  display: grid;
+  gap: 9px;
+  align-content: start;
+}
+
+.training-grid-2 {
+  grid-template-columns: repeat(2, 125px);
+}
+
+.training-grid-4 {
+  grid-template-columns: repeat(4, 125px);
+}
+
+
+/* =========================================================
+   IMAGE TILE
+========================================================= */
+
+.archive-tile {
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 1 / 0.82;
+
+  padding: 0;
+  margin: 0;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(35, 32, 28, 0.13);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition: border-color 0.3s ease;
+}
+
+.archive-tile img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.45s ease,
+    opacity 0.45s ease;
+}
+
+.archive-tile:hover {
+  border-color: rgba(35, 32, 28, 0.32);
+}
+
+.archive-tile:hover img {
+  transform: scale(1.04);
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   DESIGN STUDIOS
+========================================================= */
+
+.training-category:first-of-type .training-grid-2 {
+  grid-template-columns: 125px;
+}
+
+
+/* =========================================================
+   ADULTS
+========================================================= */
+
+.training-category:nth-of-type(2) .training-grid-4 {
+  grid-template-columns: repeat(4, 125px);
+}
+
+
+/* =========================================================
+   STUDENTS
+========================================================= */
+
+.training-category:nth-of-type(3) .training-grid-4 {
+  grid-template-columns: repeat(6, 95px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .training-category {
+    grid-template-columns: 150px 1fr;
+    gap: 30px;
+  }
+
+  .training-category:nth-of-type(3) .training-grid-4 {
+    grid-template-columns: repeat(5, 90px);
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .training-category {
+    display: block;
+    margin-bottom: 55px;
+  }
+
+  .category-intro {
+    margin-bottom: 20px;
+  }
+
+  .category-intro p {
+    max-width: 300px;
+  }
+
+  .training-grid-2,
+  .training-category:first-of-type .training-grid-2 {
+    grid-template-columns: repeat(2, 105px);
+  }
+
+  .training-category:nth-of-type(2) .training-grid-4,
+  .training-category:nth-of-type(3) .training-grid-4 {
+    grid-template-columns: repeat(4, 80px);
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .archive-head {
+    margin-bottom: 45px;
+  }
+
+  .archive-head h3 {
+    font-size: 28px;
+  }
+
+  .training-category:nth-of-type(2) .training-grid-4,
+  .training-category:nth-of-type(3) .training-grid-4 {
+    grid-template-columns: repeat(3, 80px);
+  }
+
+}
+
+/* =========================================================
+   INTERACTION
+========================================================= */
+
+.archive-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.archive-tile::after {
+  content: "View";
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+
+  padding: 5px 8px;
+
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #fff;
+  background: rgba(25, 23, 20, 0.72);
+
+  opacity: 0;
+  transform: translateY(5px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.archive-tile:hover::after,
+.archive-tile:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.archive-tile img {
+  transition:
+    transform 0.5s cubic-bezier(.2,.7,.2,1),
+    opacity 0.35s ease;
+}
+
+.archive-tile:hover img {
+  transform: scale(1.035);
+  opacity: 0.92;
+}
+
+
+/* subtle category interaction */
+
+.category-intro h4 {
+  transition: transform 0.3s ease;
+}
+
+.training-category:hover .category-intro h4 {
+  transform: translateX(4px);
+}
+/* =========================================================
+   TRAINING ARCHIVE
+   ========================================================= */
+
+.training-archive {
+  margin-top: 42px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.training-archive-header {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+
+  margin-bottom: 18px;
+}
+
+.training-archive-header .eyebrow {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+
+  color: #a47d42;
+}
+
+.training-archive-header h3 {
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -.025em;
+
+  color: #2d2925;
+}
+
+
+/* =========================================================
+   CATEGORY ROWS
+   ========================================================= */
+
+.training-category {
+  display: grid;
+  grid-template-columns: 125px 1fr;
+  align-items: start;
+
+  column-gap: 20px;
+
+  padding: 18px 0;
+}
+
+
+/* ONLY TWO DIVIDER LINES */
+
+.training-category + .training-category {
+  border-top: 1px solid rgba(45, 41, 37, .14);
+}
+
+
+/* =========================================================
+   CATEGORY LABEL
+   ========================================================= */
+
+.category-intro {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+
+  padding-top: 2px;
+}
+
+.category-number {
+  font-size: 9px;
+  letter-spacing: .08em;
+
+  color: #a47d42;
+}
+
+.category-copy h4 {
+  margin: 0;
+
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .02em;
+
+  color: #332e29;
+}
+
+
+/* Hide descriptions */
+
+.category-copy p {
+  display: none;
+}
+
+
+/* =========================================================
+   IMAGE GRID
+   ========================================================= */
+
+.training-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  align-items: flex-start;
+}
+
+
+/* =========================================================
+   ARCHIVE IMAGE
+   ========================================================= */
+
+.archive-tile {
+  position: relative;
+
+  width: 88px;
+  height: 68px;
+
+  display: block;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  border: 1px solid rgba(45, 41, 37, .13);
+
+  background: #eee8df;
+}
+
+
+.archive-tile img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform .4s ease,
+    opacity .3s ease;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.archive-tile:hover {
+  border-color: #a47d42;
+}
+
+.archive-tile:hover img {
+  transform: scale(1.06);
+  opacity: .9;
+}
+
+
+/* Small interaction marker */
+
+.archive-tile::after {
+  content: "↗";
+
+  position: absolute;
+  right: 4px;
+  bottom: 3px;
+
+  font-size: 9px;
+  color: white;
+
+  opacity: 0;
+
+  transition: opacity .2s ease;
+}
+
+.archive-tile:hover::after {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   KEYBOARD ACCESSIBILITY
+   ========================================================= */
+
+.archive-tile:focus-visible {
+  outline: 1px solid #a47d42;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+  .training-category {
+    grid-template-columns: 105px 1fr;
+    column-gap: 15px;
+  }
+
+  .archive-tile {
+    width: 82px;
+    height: 63px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .training-archive {
+    margin-top: 32px;
+  }
+
+  .training-archive-header {
+    margin-bottom: 14px;
+  }
+
+  .training-archive-header h3 {
+    font-size: 21px;
+  }
+
+
+  .training-category {
+    grid-template-columns: 1fr;
+    row-gap: 9px;
+
+    padding: 14px 0;
+  }
+
+
+  .category-intro {
+    padding-left: 1px;
+  }
+
+
+  .archive-tile {
+    width: calc(25% - 6px);
+    height: auto;
+
+    aspect-ratio: 1.28;
   }
 }
