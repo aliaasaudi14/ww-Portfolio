@@ -1197,7 +1197,7 @@ a,
 
 
 /* =========================================================
-   11. PROJECTS / DESIGN & STYLING
+   11. PROJECTS / DESIGN 
    ========================================================= */
 
 .project-list {
@@ -1431,10 +1431,10 @@ a,
 
 
 /* =========================================================
-   12. CONSULTANCY
+   12. CONSULTATION
    ========================================================= */
 
-.consultancy {
+.consultation {
   display: grid;
   grid-template-columns: .9fr 1.6fr;
 
@@ -1443,13 +1443,13 @@ a,
   align-items: start;
 }
 
-.consultancy-intro h2 {
+.consultation-intro h2 {
   font-size: clamp(31px, 4.2vw, 52px);
   letter-spacing: -2px;
   font-weight: 600;
 }
 
-.consultancy-intro p {
+.consultation-intro p {
   margin-top: 18px;
 
   color: var(--ink-soft);
@@ -1457,7 +1457,7 @@ a,
   line-height: 1.9;
 }
 
-.consultancy-list {
+.consultation-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
 
@@ -2767,7 +2767,7 @@ a,
   /* General layouts */
 
   .profile,
-  .consultancy,
+  .consultation,
   .fullservice {
     grid-template-columns: 1fr;
   }
@@ -2895,9 +2895,9 @@ a,
   }
 
 
-  /* Consultancy */
+  /* Consultation */
 
-  .consultancy-list {
+  .consultation-list {
     gap: 11px;
   }
 
@@ -3346,7 +3346,7 @@ a,
   /* Section headings */
 
   .service-copy h2,
-  .consultancy-intro h2,
+  .consultation-intro h2,
   .style-intro h2 {
     font-size: clamp(29px, 8.5vw, 40px);
   }
@@ -3859,7 +3859,7 @@ a,
   }
 
   .section-top h2,
-  .consultancy-intro h2,
+  .consultation-intro h2,
   .style-intro h2,
   .service-copy h2,
   .contact-intro h2,
@@ -4001,19 +4001,19 @@ a,
   }
 
 
-  /* Consultancy */
+  /* Consultation */
 
-  #consultancy {
+  #consultation {
     page-break-before: always;
     break-before: page;
   }
 
-  .consultancy-intro {
+  .consultation-intro {
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
-  .consultancy-list {
+  .consultation-list {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 6mm !important;
@@ -4218,3 +4218,4 @@ a,
     transition: none !important;
   }
 }
+
