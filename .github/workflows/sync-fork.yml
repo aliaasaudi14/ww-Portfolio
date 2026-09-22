@@ -1,0 +1,27 @@
+name: Sync Wellbeing Works Fork
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync fork
+        env:
+          TOKEN: ${{ secrets.FORK_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git remote add fork https://x-access-token:${TOKEN}@github.com/BasmaElHosseiny/ww-Portfolio.git
+
+          git push fork main --force
