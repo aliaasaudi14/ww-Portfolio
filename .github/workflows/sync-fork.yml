@@ -1,4 +1,4 @@
-name: Sync Wellbeing Works Fork
+name: Sync Basma Fork
 
 on:
   push:
@@ -10,18 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Sync fork
-        env:
-          TOKEN: ${{ secrets.FORK_TOKEN }}
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git remote add fork https://x-access-token:${TOKEN}@github.com/BasmaElHosseiny/ww-Portfolio.git
-
-          git push fork main --force
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.FORK_TOKEN }}
+          script: |
+            await github.rest.repos.merge({
+              owner: 'BasmaElHosseiny',
+              repo: 'ww-Portfolio',
+              base: 'main',
+              head: 'aliaasaudi14:main',
+              commit_message: 'Sync with original repository'
+            });
