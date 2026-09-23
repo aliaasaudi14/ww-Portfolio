@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Sync Basma Fork
-        uses: actions/github-script@v8
+      - name: Checkout original repository
+        uses: actions/checkout@v4
         with:
-          github-token: ${{ secrets.FORK_TOKEN }}
-          script: |
-            await github.rest.git.updateRef({
-              owner: 'BasmaElHosseiny',
-              repo: 'ww-Portfolio',
-              ref: 'heads/main',
-              sha: '${{ github.sha }}',
-              force: true
-            });
+          fetch-depth: 0
+
+      - name: Push to Basma fork
+        env:
+          FORK_TOKEN: ${{ secrets.FORK_TOKEN }}
+        run: |
+          git remote remove origin
+          git remote add origin https://x-access-token:${FORK_TOKEN}@github.com/BasmaElHosseiny/ww-Portfolio.git
+          git push origin HEAD:main --force
