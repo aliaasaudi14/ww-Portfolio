@@ -11,14 +11,20 @@ jobs:
 
     steps:
       - name: Sync fork
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.FORK_TOKEN }}
           script: |
-            await github.rest.repos.merge({
+            const { data: repo } = await github.rest.repos.get({
+              owner: 'BasmaElHosseiny',
+              repo: 'ww-Portfolio'
+            });
+
+            await github.rest.git.updateRef({
               owner: 'BasmaElHosseiny',
               repo: 'ww-Portfolio',
-              base: 'main',
-              head: 'aliaasaudi14:main',
-              commit_message: 'Sync with original repository'
+              ref: 'heads/main',
+              sha: '${{ github.sha }}',
+              force: true
             });
+
